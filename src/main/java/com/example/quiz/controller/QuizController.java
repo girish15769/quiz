@@ -1,5 +1,7 @@
 package com.example.quiz.controller;
 
+import com.example.quiz.dto.QuizResultResponse;
+import com.example.quiz.dto.QuizSubmissionRequest;
 import com.example.quiz.entity.Quiz;
 import com.example.quiz.service.QuizService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,5 +25,12 @@ public class QuizController {
     @Operation(description = "Take Quiz Api")
     public Quiz takeQuiz(@PathVariable  Long id){
         return quizService.getQuiz(id);
+    }
+
+    @PostMapping("quiz/{id}/submit")
+    public QuizResultResponse submitQuiz(
+            @PathVariable Long id,
+            @RequestBody QuizSubmissionRequest request) {
+        return quizService.evaluate(id, request);
     }
 }
