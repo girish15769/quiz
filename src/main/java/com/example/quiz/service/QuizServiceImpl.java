@@ -4,9 +4,12 @@ import com.example.quiz.dto.QuizResultResponse;
 import com.example.quiz.dto.QuizSubmissionRequest;
 import com.example.quiz.entity.Question;
 import com.example.quiz.entity.Quiz;
+import com.example.quiz.exception.NoQuizFoundException;
 import com.example.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class QuizServiceImpl implements QuizService{
@@ -21,12 +24,21 @@ public class QuizServiceImpl implements QuizService{
 
     @Override
     public Quiz getQuiz(Long id) {
-        return quizRepository.findById(id).get();
+        Optional<Quiz> quizOptional = quizRepository.findById(id);
+        if(quizOptional.isEmpty()){
+            throw new NoQuizFoundException("quiz not found");
+        }
+        Quiz quiz = quizOptional.get();
+        return quiz;
     }
 
     @Override
     public QuizResultResponse evaluate(Long id, QuizSubmissionRequest request) {
-        Quiz quiz = quizRepository.findById(id).orElseThrow();
+        Optional<Quiz> quizOptional = quizRepository.findById(id);
+        if(quizOptional.isEmpty()){
+            throw new NoQuizFoundException("quiz not found");
+        }
+        Quiz quiz = quizOptional.get();
         int correct = 0;
 
 
