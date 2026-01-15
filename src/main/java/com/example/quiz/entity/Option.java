@@ -1,5 +1,6 @@
 package com.example.quiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,7 @@ public class Option {
     private boolean isCorrect;
     @ManyToOne
     @JoinColumn(name = "question_id")
+    @JsonBackReference
     private Question question;
 
 

@@ -2,13 +2,12 @@ package com.example.quiz.controller;
 
 import com.example.quiz.entity.Quiz;
 import com.example.quiz.service.QuizService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
+@RequestMapping("/api")
 public class QuizController {
 
     @Autowired
