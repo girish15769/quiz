@@ -51,7 +51,6 @@ This document outlines the assumptions, scope, and technical approach for buildi
     * Quiz creation
     * Fetch quiz by ID
     * Submit quiz answers
-    * Evaluate and return results
 
 ---
 
@@ -113,14 +112,6 @@ This document outlines the assumptions, scope, and technical approach for buildi
 | text        | VARCHAR     |
 | is_correct  | BOOLEAN     |
 
-### Submission
-
-| Column       | Type        |
-| ------------ | ----------- |
-| id           | BIGINT (PK) |
-| quiz_id      | BIGINT      |
-| score        | INT         |
-| submitted_at | TIMESTAMP   |
 
 ---
 
@@ -128,7 +119,7 @@ This document outlines the assumptions, scope, and technical approach for buildi
 
 * `POST /api/admin/quizzes`
 * `GET /api/quizzes/{id}`
-* `POST /api/quizzes/{id}/submit`
+* `POST /api/quiz/{id}/submit`
 
 ---
 
@@ -158,22 +149,19 @@ This document outlines the assumptions, scope, and technical approach for buildi
 
 ## 10. Scope Changes During Implementation
 
-(To be updated during development if any features are dropped or simplified.)
+* Submit quiz and view results are part on same api
 
 ---
 
 ## 11. Reflection (What I’d Do Next)
 
 If I had more time, I would:
+* Could have used DTO's and map struct for getting the list of entites inside an entity.
+* Add unit test and integration tests
+* Used constructor injection instead for @Autowired
 * Add frontend
 * Deploy this project
 * Add authentication and role‑based access
-* Support timed quizzes
-* Store quiz attempts per user
-* Improve UI/UX with validations and animations
-* Add pagination and search for quizzes
-* Introduce Docker and CI/CD
-* Deploy using AWS or Render with environment separation
 
 ---
 
